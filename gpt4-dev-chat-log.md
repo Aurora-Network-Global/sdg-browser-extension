@@ -23,8 +23,7 @@ Add the following JavaScript snippet to the bottom of your page:
 
 ---------------
 
-## Chrome extensions for SDGs
-
+## Answer by GPT4
 
 Building a Chrome extension that displays an image related to the United Nations Sustainable Development Goals (SDGs) based on the content of the web page involves several steps. Here’s a high-level outline of what you need to do, followed by more detailed steps:
 
