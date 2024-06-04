@@ -15,10 +15,13 @@
   chrome.runtime.sendMessage({ action: 'fetchScript' }, (response) => {
     if (response && response.scriptContent) {
       console.log('Script content received, injecting script into the page');
-      // Create a script element and set its content to the fetched script
+      // Create a Blob with the script content
+      const blob = new Blob([response.scriptContent], { type: 'text/javascript' });
+      const url = URL.createObjectURL(blob);
+
+      // Create a script element and set its src to the Blob URL
       const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.textContent = response.scriptContent;
+      script.src = url;
       document.body.appendChild(script);
     } else {
       console.error('Failed to load the widget script:', response.error);
