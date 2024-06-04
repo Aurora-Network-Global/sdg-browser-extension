@@ -14,13 +14,14 @@
   // Request the widget.js script content from the background script
   chrome.runtime.sendMessage({ action: 'fetchScript' }, (response) => {
     if (response && response.scriptContent) {
-      // Use chrome.scripting.executeScript to execute the fetched script content
-      chrome.scripting.executeScript({
-        target: { allFrames: true },
-        func: new Function(response.scriptContent)
-      });
+      console.log('Script content received, injecting script into the page');
+      // Create a script element and set its content to the fetched script
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.textContent = response.scriptContent;
+      document.body.appendChild(script);
     } else {
-      console.error('Failed to load the widget script.');
+      console.error('Failed to load the widget script:', response.error);
     }
   });
 
@@ -32,4 +33,5 @@
     }
   });
 })();
+
 
