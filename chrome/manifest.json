@@ -4,6 +4,7 @@
   "version": "1.0",
   "description": "Shows how related the text on the web page is to each of the SDGs.",
   "permissions": [
+    "https://aurora-sdg.labs.vu.nl/*",
     "activeTab",
     "scripting"
   ],
@@ -22,6 +23,15 @@
     {
       "matches": ["<all_urls>"],
       "js": ["content.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/css/widget.css",
+        "assets/img/*"
+      ],
+      "matches": ["<all_urls>"]
     }
   ]
 }

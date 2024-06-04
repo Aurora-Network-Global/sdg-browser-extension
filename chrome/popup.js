@@ -10,7 +10,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   chrome.scripting.executeScript(
     {
       target: { tabId: tabs[0].id },
-      function: () => {
+      func: () => {
         // Retrieve the SDG relevance data
         const sdgData = document.querySelector('.sdg-wheel')?.getAttribute('data-text') || 'No data found';
         return { sdgData };

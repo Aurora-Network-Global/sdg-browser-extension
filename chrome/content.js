@@ -11,11 +11,17 @@
   // Inject the container into the page
   document.body.appendChild(sdgContainer);
 
-  // Create a script element to load the local widget.js file
-  const script = document.createElement('script');
-  script.src = chrome.runtime.getURL('widget.js');
-  script.type = 'text/javascript';
-  document.body.appendChild(script);
+  // Request the widget.js script content from the background script
+  chrome.runtime.sendMessage({ action: 'fetchScript' }, (response) => {
+    if (response && response.scriptContent) {
+      // Create a script element and set its content to the fetched script
+      const scriptElement = document.createElement('script');
+      scriptElement.textContent = response.scriptContent;
+      document.head.appendChild(scriptElement);
+    } else {
+      console.error('Failed to load the widget script.');
+    }
+  });
 
   // Listen for messages from the popup
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -25,3 +31,4 @@
     }
   });
 })();
+
