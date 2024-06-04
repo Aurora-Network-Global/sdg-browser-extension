@@ -7,9 +7,6 @@
     "activeTab",
     "scripting"
   ],
-  "host_permissions": [
-    "https://aurora-sdg.labs.vu.nl/*"
-  ],
   "background": {
     "service_worker": "background.js"
   },
