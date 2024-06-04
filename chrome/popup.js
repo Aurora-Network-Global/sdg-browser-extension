@@ -10,9 +10,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
   chrome.scripting.executeScript(
     {
       target: { tabId: tabs[0].id },
-      func: () => {
-        // Retrieve the SDG relevance data (this is where you'd integrate your logic)
-        const sdgData = document.querySelector('.sdg-wheel').getAttribute('data-text');
+      function: () => {
+        // Retrieve the SDG relevance data
+        const sdgData = document.querySelector('.sdg-wheel')?.getAttribute('data-text') || 'No data found';
         return { sdgData };
       },
     },
